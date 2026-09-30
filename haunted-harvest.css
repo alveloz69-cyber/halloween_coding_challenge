@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+
+/* Halloween Color Palette & Variables */
+:root {
+  --pumpkin: #ff7518;
+  --candy-purple: #5a189a;
+  --spider-black: #1a1423;
+  --slime-green: #8ac926;
+  --ghost-white: #f6f2f8;
+  --candle-glow: #ffd60a;
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* CSS-only scene switching; wrap scenes in .scenes */
+.scene { display: none; }
+.scenes:not(:has(.scene:target)) .scene:first-child { display: block; }
+.scene:target { display: block; }
+
+/* Glowing jack-o'-lantern flicker */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px var(--pumpkin));
+  }
+  50% { opacity: 0.75; }
+}
+
+.pumpkin-glow {
+  animation: flicker 2.5s ease-in-out infinite;
+}
+
+/* Fog drift */
+@keyframes drift {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* Page */
+body {
+  margin: 0;
+  background: var(--spider-black) url("background.jpg") center / cover no-repeat;
+}
+
+main {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Images */
+.witch-animate img,
+.wagon-animate img,
+.cloud-animate img,
+.tree-place img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Witch */
+.witch-animate {
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  width: clamp(100px, 18vw, 180px);
+  z-index: 3;
+  animation: broomstick-ride 14s linear infinite;
+}
+
+@keyframes broomstick-ride {
+  0% {
+    left: -200px;
+    transform: translateY(0) rotate(-3deg);
+  }
+  25% { transform: translateY(-18px) rotate(2deg); }
+  50% { transform: translateY(6px) rotate(-2deg); }
+  75% { transform: translateY(-12px) rotate(2deg); }
+  100% {
+    left: 100%;
+    transform: translateY(0) rotate(-3deg);
+  }
+}
+
+/* Wagon */
+.wagon-animate {
+  position: absolute;
+  bottom: 5%;
+  left: 40%;
+  width: clamp(140px, 25vw, 260px);
+  z-index: 2;
+  animation: wagon-ride 24s linear infinite;
+}
+
+@keyframes wagon-ride {
+  0% {
+    left: -280px;
+    transform: translateY(0);
+  }
+  25%, 75% { transform: translateY(-3px); }
+  50% { transform: translateY(0); }
+  100% {
+    left: 100%;
+    transform: translateY(0);
+  }
+}
+
+/* Cloud */
+.cloud-animate {
+  position: absolute;
+  top: 8%;
+  left: 10%;
+  width: clamp(120px, 22vw, 240px);
+  opacity: 0.65;
+  z-index: 1;
+  animation: cloud-drift 35s linear infinite;
+}
+
+@keyframes cloud-drift {
+  from { left: -260px; }
+  to { left: 100%; }
+}
+
+/* Tree */
+.tree-place {
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  width: clamp(140px, 25vw, 280px);
+  z-index: 1;
+  transform-origin: bottom center;
+  animation: tree-sway 6s ease-in-out infinite alternate;
+}
+
+@keyframes tree-sway {
+  from { transform: rotate(-2deg); }
+  to { transform: rotate(2deg); }
+}
+
+/* Owl emoji */
+.owl-animate {
+  position: absolute;
+  top: 18%;
+  left: 10%;
+  font-size: clamp(35px, 6vw, 65px);
+  z-index: 3;
+  animation: owl-fly 18s linear infinite;
+}
+
+@keyframes owl-fly {
+  0% {
+    left: -100px;
+    transform: translateY(0);
+  }
+  25% { transform: translateY(-15px); }
+  50% { transform: translateY(10px); }
+  75% { transform: translateY(-15px); }
+  100% {
+    left: 100%;
+    transform: translateY(0);
+  }
+}
+
+/* Couple emoji */
+.couple {
+  position: absolute;
+  bottom: 15%;
+  left: 40%;
+  font-size: clamp(30px, 5vw, 50px);
+  z-index: 3;
+}
+
+/* Story font */
+.spooky_words {
+  position: absolute;
+  top: 2%;
+  width: 100%;
+  text-align: center;
+  color: var(--ghost-white);
+  font-family: "Parisienne", cursive;
+  font-size: clamp(28px, 5vw, 48px);
+  text-shadow: 2px 2px 4px var(--spider-black);
+  z-index: 4;
+}
+
+/* Stop movement */
+@media (prefers-reduced-motion: reduce) {
+  .witch-animate,
+  .wagon-animate,
+  .cloud-animate,
+  .tree-place,
+  .owl-animate {
+    animation: none !important;
+    transform: none;
+  }
+}
