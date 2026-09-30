@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
 
 /* Halloween Color Palette & Variables */
+
 :root {
   --pumpkin: #ff7518;
   --candy-purple: #5a189a;
@@ -9,7 +10,6 @@
   --ghost-white: #f6f2f8;
   --candle-glow: #ffd60a;
 }
-
 /* Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -45,7 +45,7 @@
 /* Page */
 body {
   margin: 0;
-  background: var(--spider-black) url("background.jpg") center / cover no-repeat;
+  background: var(--spider-black) url("assets/background.jpg") center / cover no-repeat;
 }
 
 main {
@@ -91,11 +91,11 @@ main {
 /* Wagon */
 .wagon-animate {
   position: absolute;
-  bottom: 5%;
+  bottom: 2%;
   left: 40%;
   width: clamp(140px, 25vw, 260px);
   z-index: 2;
-  animation: wagon-ride 24s linear infinite;
+  animation: wagon-ride 20s linear infinite;
 }
 
 @keyframes wagon-ride {
@@ -130,8 +130,8 @@ main {
 /* Tree */
 .tree-place {
   position: absolute;
-  bottom: 0;
-  right: 5%;
+  bottom: 36%;
+  right: 2%;
   width: clamp(140px, 25vw, 280px);
   z-index: 1;
   transform-origin: bottom center;
@@ -170,7 +170,7 @@ main {
 /* Story font */
 .spooky_words {
   position: absolute;
-  top: 2%;
+  top: 1%;
   width: 100%;
   text-align: center;
   color: var(--ghost-white);
@@ -180,6 +180,10 @@ main {
   z-index: 4;
 }
 
+.spooky_words:hover{
+  color:#ffd60a ;
+
+}
 /* Stop movement */
 @media (prefers-reduced-motion: reduce) {
   .witch-animate,
